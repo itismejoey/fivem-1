@@ -159,6 +159,20 @@ class Server {
 				});
 		});
 	}
+	
+	getInfo() {
+		return new Promise((send, err) => {
+			axios
+				.get(`http://${this.ip}/info.json`)
+				.then(function(body) {
+					let resources = body.data;
+					send(resources);
+				})
+				.catch(function(error) {
+					err(error);
+				});
+		});
+	}
 }
 
 module.exports.Server = Server;
